@@ -876,7 +876,7 @@
   );
   transition: transform 3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }
-    @keyframes wiggle {
+   @keyframes wiggle {
   0%, 100% { transform: rotate(0deg); }
   25% { transform: rotate(2deg); }
   50% { transform: rotate(-2deg); }
@@ -1264,17 +1264,15 @@ button.wyr-btn:hover {
     </p>
   </div>
 </div>
-<!-- 🪞 Would You Rather: Love Edition (Spicy + Interactive) -->
+<!-- 🪞 Would You Rather: Love Edition (Working Version) -->
 <div class="section" id="wouldYouRatherSection">
-  <p style="font-size: 1.5rem;" id="wyrPrompt">🪞 Would You Rather: Love Edition</p>
-
-  <div id="wyrQuestionText" class="wyr-animate" style="margin-top: 1.5rem; font-size: 1.3rem; font-style: italic; color: #cc3366;">
+  <p style="font-size: 1.5rem;" id="wyrTitle">🪞 Would You Rather: Love Edition</p>
+  <p id="wyrPrompt" style="margin-top: 1.5rem; font-size: 1.3rem; font-style: italic; color: #cc3366;">
     Would you rather...
-  </div>
-
+  </p>
   <div id="wyrOptions" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; align-items: center;">
-    <button id="option1" onclick="chooseWYR(1)" class="animated-listen wyr-btn" style="width: 80%; max-width: 320px;">💞 Option 1</button>
-    <button id="option2" onclick="chooseWYR(2)" class="animated-listen wyr-btn" style="width: 80%; max-width: 320px;">💋 Option 2</button>
+    <button id="option1" onclick="chooseWYR(1)" class="animated-listen wyr-btn" style="width: 80%; max-width: 320px;">Option 1</button>
+    <button id="option2" onclick="chooseWYR(2)" class="animated-listen wyr-btn" style="width: 80%; max-width: 320px;">Option 2</button>
   </div>
 
   <div id="wyrSummary" style="display:none; margin-top: 3rem; font-size: 1.2rem; color: #6b2c2c; text-align: center; max-width: 600px; margin-left: auto; margin-right: auto;">
@@ -1283,6 +1281,7 @@ button.wyr-btn:hover {
     <p style="margin-top: 2rem; font-style: italic; color: #cc3366;">No matter what you choose, I choose you. 💖</p>
   </div>
 </div>
+
 
     <!-- 💌 Final Slide -->
     <div class="section">
@@ -1661,7 +1660,35 @@ function mixPotion() {
     return;
   }
 
+ let ingredients = Array.from(selected).map(i => i.value).join(', ');
  
+  // Glow animation pulse
+  bottle.style.transform = "scale(1.2)";
+  bottle.style.transition = "transform 0.4s ease";
+  setTimeout(() => bottle.style.transform = "scale(1)", 400);
+
+  result.innerHTML = `
+    🧪 You mixed: <strong>${ingredients}</strong><br/>
+    🌟 The potion bubbles, sparkles, and glows...<br/><br/>
+    💖 This potion is called:<br/>
+    <span style="font-size: 1.5rem; font-weight: bold; color: #ff4081; animation: glowPotion 2s infinite;">
+      Eternal Love ❤️<br/>— brewed by Sparsh, just for Maya
+    </span>
+  `;
+
+  firework();
+}
+function revealColorMeaning(color) {
+  const msg = {
+    red: "❤️ Passion – You set my soul on fire.",
+    blue: "💙 Calm – Your presence is peace.",
+    yellow: "💛 Joy – You make life brighter.",
+    green: "💚 Growth – With you, I bloom.",
+    purple: "💜 Magic – You enchant my world.",
+    pink: "💗 Love – You color everything with love."
+  };
+  document.getElementById("colorMessage").innerText = msg[color] || "";
+}
 const wyrRounds = [
   {
     q: "Would you rather cuddle for 6 hours straight 🛏️ or kiss every 15 minutes for 24 hours? 💋",
@@ -1696,7 +1723,7 @@ const wyrAnswers = [];
 function chooseWYR(choice) {
   const btn = choice === 1 ? document.getElementById("option1") : document.getElementById("option2");
 
-  // Animate button tap
+  // Animate selection
   btn.classList.add("wyr-choice-clicked");
   setTimeout(() => btn.classList.remove("wyr-choice-clicked"), 500);
 
@@ -1708,17 +1735,16 @@ function chooseWYR(choice) {
 
   if (wyrIndex < wyrRounds.length) {
     const next = wyrRounds[wyrIndex];
-    document.getElementById("wyrQuestionText").innerText = next.q;
+    document.getElementById("wyrPrompt").innerText = next.q;
     document.getElementById("option1").innerText = next.o1;
     document.getElementById("option2").innerText = next.o2;
 
-    // Animate question fade
-    document.getElementById("wyrQuestionText").classList.add("wyr-animate");
+    document.getElementById("wyrPrompt").classList.add("wyr-animate");
     setTimeout(() => {
-      document.getElementById("wyrQuestionText").classList.remove("wyr-animate");
+      document.getElementById("wyrPrompt").classList.remove("wyr-animate");
     }, 600);
   } else {
-    document.getElementById("wyrQuestionText").style.display = "none";
+    document.getElementById("wyrPrompt").style.display = "none";
     document.getElementById("wyrOptions").style.display = "none";
 
     const summary = document.getElementById("wyrSummary");
@@ -1727,46 +1753,16 @@ function chooseWYR(choice) {
     summary.style.display = "block";
     summary.classList.add("wyr-animate");
 
-    // Fire confetti/heart animation from your project
     if (typeof firework === "function") firework();
   }
 }
 
-// Start with first question
 document.addEventListener("DOMContentLoaded", () => {
   const current = wyrRounds[0];
-  document.getElementById("wyrQuestionText").innerText = current.q;
+  document.getElementById("wyrPrompt").innerText = current.q;
   document.getElementById("option1").innerText = current.o1;
   document.getElementById("option2").innerText = current.o2;
 });
-
-  // Glow animation pulse
-  bottle.style.transform = "scale(1.2)";
-  bottle.style.transition = "transform 0.4s ease";
-  setTimeout(() => bottle.style.transform = "scale(1)", 400);
-
-  result.innerHTML = `
-    🧪 You mixed: <strong>${ingredients}</strong><br/>
-    🌟 The potion bubbles, sparkles, and glows...<br/><br/>
-    💖 This potion is called:<br/>
-    <span style="font-size: 1.5rem; font-weight: bold; color: #ff4081; animation: glowPotion 2s infinite;">
-      Eternal Love ❤️<br/>— brewed by Sparsh, just for Maya
-    </span>
-  `;
-
-  firework();
-}
-function revealColorMeaning(color) {
-  const msg = {
-    red: "❤️ Passion – You set my soul on fire.",
-    blue: "💙 Calm – Your presence is peace.",
-    yellow: "💛 Joy – You make life brighter.",
-    green: "💚 Growth – With you, I bloom.",
-    purple: "💜 Magic – You enchant my world.",
-    pink: "💗 Love – You color everything with love."
-  };
-  document.getElementById("colorMessage").innerText = msg[color] || "";
-}
 
 const storyPages = [
   "Once upon a time, two souls collided... 💫",
