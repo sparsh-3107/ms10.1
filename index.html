@@ -1003,7 +1003,7 @@ button.wyr-btn:hover {
 </div>
 <!-- 😢 Sparkling Tears -->
 <div class="section">
-  <p style="font-size: 1.4rem;">😢 Type Your Feeling...</p>
+  <p style="font-size: 1.4rem;">😢 I Miss You Baby😭 ...</p>
   <input type="text" id="missInput" placeholder="Say something..." style="padding:0.6rem; border-radius:1rem; border:2px solid #ff80ab; font-size:1rem; width:80%; max-width:300px; text-align:center;" />
   <br/><br/>
   <button onclick="checkTears()" class="animated-listen">💬 Tell Me</button>
@@ -1063,6 +1063,7 @@ button.wyr-btn:hover {
     <!-- 💘 Why I Love You Randomizer -->
     <div class="section">
       <p style="font-size: 1.5rem;">💘 Why I Love You</p>
+      <p style="font-size: 1.5rem;">(press 10 times)</p>
       <button id="whyLoveBtn" style="margin-top: 1rem; font-size: 1rem; padding: 0.6rem 1rem; border-radius: 1rem; background: #ff80ab; color: white; font-family: 'Gloria Hallelujah', cursive; border: none; cursor: pointer;">💬 Tell Me❤️</button>
       <p id="reasonText" style="margin-top: 1rem; font-size: 1.2rem; color: #cc3366;"></p>
     </div>
@@ -1499,12 +1500,12 @@ function rollLoveDice() {
     ][roll]}')`;
 
     const results = [
-      "💋 A kiss is coming your way!",
-      "🫂 You win a hug!",
-      "💌 I’ll send you a love letter.",
-      "🎶 You get to choose a song!",
-      "💖 I’ll remind you why I love you.",
-      "🧸 You win the cutest award!"
+      "🔥Whisper your favorite fantasy",
+      "💋Record yourself blowing a kiss 😘",
+      "❤️Send a voice note saying “I want you” 😈",
+      "🎶 Do a TikTok dance and send it",
+      "💀What do you imagine us doing next time?",
+      "🌚Send me a spicy audio moan 😳!"
     ];
     document.getElementById("diceResult").innerText = results[roll - 1];
   }, 1000);
@@ -1520,10 +1521,10 @@ function spinLoveWheel() {
 
   const options = [
     "💋 One sweet kiss from me!",
-    "💬 I’ll tell you a reason I love you.",
-    "🎶 You pick our next song.",
+    "🍫 You get a surprise treat — delivered or promised!",
+    "🎁 You unlock one surprise task from me. 😉",
     "🌚 You can unbox me!",
-    "🫂 You win a cuddle day!"
+   "🌙 You get a bedtime story — about you and me, no clothes. 😉"
   ];
 
   const anglePerSegment = 360 / options.length;
@@ -1696,14 +1697,19 @@ const wyrRounds = [
     o2: "Kiss every 15 mins 💋"
   },
   {
-    q: "Would you rather share a tub of ice cream 🍨 or share a shower? 🚿😳",
-    o1: "Share ice cream 🍦",
-    o2: "Share a steamy shower 🚿"
+    q: "Would you rather have a steamy shower together 🚿 or share a bath with candles? 🛁",
+    o1: "steamy shower together🚿",
+    o2: "share a bath with candles🛁"
   },
   {
     q: "Would you rather fall asleep on a video call every night 💤 or wake up to my voice every morning? ☀️",
     o1: "Fall asleep on call 😴",
     o2: "Wake up to your voice 💞"
+  },
+   {
+    q: "Would you rather undress me slowly 🫣 or have me tease you piece by piece? 🧼",
+    o1: " undress me slowly 🫣",
+    o2: "have me tease you piece by piece 🧼"
   },
   {
     q: "Would you rather dance with me in the rain 🌧️ or kiss me in the elevator? 😘",
